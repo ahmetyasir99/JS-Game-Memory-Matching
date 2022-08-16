@@ -70,6 +70,18 @@ function createBoard() {
 
 createBoard()
 
+function flipCard() {
+    // The getAttribute() method of the Element interface returns the value of a specified attribute on the element.
+    const cardId=this.getAttribute('data-id') //clicked item 'this' and data-id attribute taken
+    cardsChosen.push(cardArray[cardId].name) //collecting clicked items in an array
+    cardsChosenIDs.push(cardId)
+    console.log(cardsChosen,cardsChosenIDs)
+    this.setAttribute('src',cardArray[cardId].img) //showing the picture of chosen card
+    if(cardsChosen.length ===2){
+       setTimeout(checkMatch,500)
+    }
+}
+
 function checkMatch() {
     const cards = document.querySelectorAll('#grid img') //img inside the grid id element
     const optionOneId = cardsChosenIDs[0]
@@ -104,14 +116,3 @@ function checkMatch() {
     }
 }
 
-function flipCard() {
-    // The getAttribute() method of the Element interface returns the value of a specified attribute on the element.
-    const cardId=this.getAttribute('data-id') //clicked item 'this' and data-id attribute taken
-    cardsChosen.push(cardArray[cardId].name) //collecting clicked items in an array
-    cardsChosenIDs.push(cardId)
-    console.log(cardsChosen,cardsChosenIDs)
-    this.setAttribute('src',cardArray[cardId].img) //showing the picture of chosen card
-    if(cardsChosen.length ===2){
-       setTimeout(checkMatch,500)
-    }
-}
